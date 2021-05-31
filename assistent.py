@@ -11,6 +11,9 @@ import sys
 import time
 import smtplib
 from email.message import EmailMessage
+import random
+import json 
+import requests
 
 print("setting all things ready....")
 x=pyttsx3.init()
@@ -85,6 +88,30 @@ def command():
         elif ask == ("tell me the time"):
             print(time.asctime(time.localtime(time.time())))
             text=(time.asctime(time.localtime(time.time())))
+        elif ask == ("toss a coin"):
+                
+            p=random.choice(["heads","tails"])
+            print(p)
+            text = (p)
+        elif ask == ("tell me a story"):
+            story = "There was a king, there was a queen, both died, story over"
+            print(story)
+            text = story
+        elif ("news") in ask:
+            url = ('http://newsapi.org/v2/top-headlines?'
+            'country=in&'
+            'apiKey=e9f2198e85a14fd994e17cf0f33ccfc3')
+            response = requests.get(url)
+            x=json.loads(response.content)
+
+            #print (x['articles'][0]['description'])
+            base=x['articles']
+            i=0
+            while i!=20:
+                print(base[i]['description'],'\n')
+                i+=1      
+            text=("headlines are on the screen")
+
         #email sending.....
         elif ask==("send email"):
             def get_info():
