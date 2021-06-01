@@ -85,6 +85,17 @@ def command():
         elif ask == ("tell me the time"):
             print(time.asctime(time.localtime(time.time())))
             text=(time.asctime(time.localtime(time.time())))
+        elif "what" in ask:
+            x = ask.split()
+            y = []
+            for i in x:
+                y.append(i)
+                y.append("+")
+            search = ""
+            for i in y:
+                search = search+i
+            webbrowser.get('C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s').open("https://www.google.com/search?q="+search)
+             
         #email sending.....
         elif ask==("send email"):
             def get_info():
